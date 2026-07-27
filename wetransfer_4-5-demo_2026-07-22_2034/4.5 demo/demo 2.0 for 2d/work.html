@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work | Best Fit Carpenters</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .work-card {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .work-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-gold);
+        }
+
+        .work-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .work-info {
+            padding: 20px;
+        }
+
+        .work-category {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 0.05em;
+        }
+
+        .work-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            color: var(--dark-charcoal);
+            margin: 8px 0;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0 20px;
+        }
+
+        .filter-btn {
+            background: rgba(37, 24, 16, 0.04);
+            border: 1px solid var(--border-color);
+            padding: 8px 20px;
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--dark-charcoal);
+            color: #fff;
+            border-color: var(--dark-charcoal);
+        }
+
+        .hide-item {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="modern-architect-theme">
+    <header class="app-header">
+        <div class="logo-section">
+            <a href="index.html" style="text-decoration:none;">
+                <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo">
+            </a>
+        </div>
+        <nav class="header-nav">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="process.html">The Process</a>
+            <a class="nav-link active" href="work.html">Our Work</a>
+            <a class="nav-link" href="team.html">Our Team</a>
+            <a class="nav-link" href="careers.html">Careers</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="planner.html">2D Planner</a>
+            <a class="nav-link" id="dashboardLink" href="dashboard.html" style="display: none;">Dashboard</a>
+            <a class="nav-link" id="loginLink" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main style="padding: 40px 20px; max-width: 1200px; margin: 0 auto; min-height: 70vh;">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div class="dd-section-label">Portfolio</div>
+            <h2 class="dd-section-title">Projects Crafted with Precision</h2>
+        </div>
+
+        <div class="pro-borders"
+            style="max-width: 800px; margin: 0 auto 30px; padding: 24px; border-top: 3px solid var(--accent-gold);">
+            <h3
+                style="font-family: var(--font-heading); font-size: 18px; color: var(--dark-charcoal); margin-bottom: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">
+                Completed Projects — Estimated Costs</h3>
+            <ul style="list-style: none; color: var(--pencil-gray); font-family: var(--font-sans); font-size: 14px;">
+                <li
+                    style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--border-color);">
+                    <strong>Zolwandle Beauty</strong> <span>R90,000</span>
+                </li>
+                <li
+                    style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--border-color);">
+                    <strong>Custom Kitchen Installation</strong> <span>R124,000</span>
+                </li>
+                <li
+                    style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--border-color);">
+                    <strong>LenMed Hospital Project</strong> <span>R112,305</span>
+                </li>
+                <li style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <strong>Full House Cabinet Installation <span style="font-size:11px; font-weight:normal;">(excluding
+                            kitchen)</span></strong> <span>R273,995</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="custom-interior">Custom Interiors</button>
+            <button class="filter-btn" data-filter="remodel">Remodels &amp; Cabinetry</button>
+        </div>
+
+        <div class="work-grid" id="workGrid">
+
+            <!-- Item 1 -->
+            <div class="work-card pro-borders" data-category="custom-interior">
+                <img src="./images/portfolio_8.jpeg" alt="White Quartz Kitchen Close-up">
+                <div class="work-info">
+                    <div class="work-category">Custom Interiors</div>
+                    <h3 class="work-title">Modern Custom Kitchen</h3>
+                    <p class="body-font text-sm" style="color: var(--pencil-gray);">Light distressed wood cabinetry
+                        featuring grey subway tile backsplash and beautiful white quartz countertops under industrial
+                        cube pendants.</p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="work-card pro-borders" data-category="custom-interior">
+                <img src="./images/portfolio_1.jpeg" alt="U-Shaped Kitchen Layout">
+                <div class="work-info">
+                    <div class="work-category">Custom Interiors</div>
+                    <h3 class="work-title">U-Shaped Kitchen Flow</h3>
+                    <p class="body-font text-sm" style="color: var(--pencil-gray);">Complete custom built-in cabinetry
+                        seamlessly wrapping around steel appliances for a flawless open-plan interior.</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="work-card pro-borders" data-category="custom-interior">
+                <img src="./images/portfolio_2.jpeg" alt="Custom TV Media Wall">
+                <div class="work-info">
+                    <div class="work-category">Custom Interiors</div>
+                    <h3 class="work-title">Bespoke Media Wall</h3>
+                    <p class="body-font text-sm" style="color: var(--pencil-gray);">Custom slatted wood paneled accent
+                        wall with integrated warm backlighting and a sleek floating console unit.</p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="work-card pro-borders" data-category="remodel">
+                <img src="./images/portfolio_3.jpeg" alt="Eyewear Boutique Display">
+                <div class="work-info">
+                    <div class="work-category">Remodels &amp; Cabinetry</div>
+                    <h3 class="work-title">Optician Boutique Showroom</h3>
+                    <p class="body-font text-sm" style="color: var(--pencil-gray);">Premium dark-wood commercial
+                        shelving units mapped specifically to showcase boutique eyewear.</p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="work-card pro-borders" data-category="remodel">
+                <img src="./images/portfolio_4.jpeg" alt="Dr ZA Sikiti Reception">
+                <div class="work-info">
+                    <div class="work-category">Remodels &amp; Cabinetry</div>
+                    <h3 class="work-title">Dr. ZA Sikiti Reception</h3>
+                    <p class="body-font text-sm" style="color: var(--pencil-gray);">Custom slatted architectural divide
+                        paired with a stark white and oak paneled front reception desk.</p>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="work-card pro-borders" data-category="remodel">
+                <img src="./images/portfolio_7.jpeg" alt="Dental Clinic Room Cabinetry">
+                <div class="work-info">
+                    <div class="work-category">Remodels &amp; Cabinetry</div>
+                    <h3 class="work-title">Clinical Office Cabinetry</h3>
+                    <p class="body-font text-sm" style="color: var(--pencil-gray);">Clean, pristine white built-in
+                        storage cabinets lining the Dr. ZA Sikiti clinical procedure room.</p>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="work-card pro-borders" data-category="custom-interior">
+                <img src="./images/portfolio_6.jpeg" alt="Master Bedroom Headboard">
+                <div class="work-info">
+                    <div class="work-category">Custom Interiors</div>
+                    <h3 class="work-title">Master Suite Headboard</h3>
+                    <p class="body-font text-sm" style="color: var(--pencil-gray);">Custom crafted wood headboard with
+                        seamless floating bedside tables to match the room aesthetic.</p>
+                </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="work-card pro-borders" data-category="remodel">
+                <img src="./images/portfolio_5.jpeg" alt="Office Reception Desk">
+                <div class="work-info">
+                    <div class="work-category">Remodels &amp; Cabinetry</div>
+                    <h3 class="work-title">Commercial Office Desks</h3>
+                    <p class="body-font text-sm" style="color: var(--pencil-gray);">Constructed light oak and white
+                        office workstation with layered panel fronts, perfect for a modern agency.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="dd-footer">
+        <div class="dd-footer-content">
+            <h3 class="dd-footer-title">Ready to bring these materials spaces to life?</h3>
+            <p style="margin-bottom: 24px;">Start by sketching your room layouts in our 2D interactive canvas or consult
+                our experts.</p>
+            <div class="dd-footer-links">
+                <a href="index.html" class="dd-footer-link">Home</a>
+                <a href="process.html" class="dd-footer-link">The Process</a>
+                <a href="work.html" class="dd-footer-link">Our Work</a>
+                <a href="team.html" class="dd-footer-link">Our Team</a>
+                <a href="careers.html" class="dd-footer-link">Careers</a>
+                <a href="contact.html" class="dd-footer-link">Contact</a>
+                <a href="planner.html" class="dd-footer-link">2D Planner</a>
+                <a href="dashboard.html" class="dd-footer-link">Dashboard</a>
+                <a href="login.html" class="dd-footer-link">Login</a>
+            </div>
+        </div>
+        <div class="dd-footer-bottom">
+            <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo" class="dd-footer-logo">
+            <p>&copy; 2026 Best Fit Carpenters. Interior Renovations. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dashboardLink = document.getElementById('dashboardLink');
+            const loginLink = document.getElementById('loginLink');
+            const dashboardFooterLinks = document.querySelectorAll('a[href="dashboard.html"]');
+            const isAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (dashboardLink) dashboardLink.style.display = isAuthenticated ? 'inline-block' : 'none';
+            if (loginLink) loginLink.style.display = isAuthenticated ? 'none' : 'inline-block';
+            dashboardFooterLinks.forEach((link) => {
+                link.style.display = isAuthenticated ? 'inline-block' : 'none';
+            });
+
+            // Filtering logic
+            const btns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.work-card');
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const category = btn.getAttribute('data-filter');
+
+                    cards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.classList.remove('hide-item');
+                        } else {
+                            card.classList.add('hide-item');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

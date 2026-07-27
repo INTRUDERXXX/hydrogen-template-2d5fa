@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Best Fit Carpenters</title>
+    <link class="styles" rel="stylesheet" href="style.css">
+</head>
+
+<body class="modern-architect-theme home-page">
+    <!-- Header Section -->
+    <header class="app-header">
+        <div class="logo-section">
+            <a href="index.html" style="text-decoration:none;">
+                <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo">
+            </a>
+        </div>
+        <nav class="header-nav">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="process.html">The Process</a>
+            <a class="nav-link" href="work.html">Our Work</a>
+            <a class="nav-link" href="team.html">Our Team</a>
+            <a class="nav-link" href="careers.html">Careers</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="planner.html">2D Planner</a>
+            <a class="nav-link active" id="dashboardLink" href="dashboard.html">Dashboard</a>
+            <a class="nav-link" id="loginLink" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="home-hero" style="display: block; padding: 60px 20px; min-height: calc(100vh - 160px);">
+        <section class="hero-card pro-borders"
+            style="max-width: 900px; margin: 0 auto; border-top: 4px solid var(--accent-gold); padding: 40px 32px;">
+            <p class="eyebrow">Saved 2D Planner Prints</p>
+            <h2 class="heading-font" style="margin-bottom: 24px;">Dashboard Archive</h2>
+
+            <div class="info-inside" style="margin-top: 0;">
+                <article class="info-card pro-borders"
+                    style="width: 100%; border: 1px solid var(--border-color); box-shadow: none;">
+                    <h3 class="heading-font"
+                        style="font-size: 14px; font-weight: 700; color: var(--dark-charcoal); border-bottom: 2px solid var(--border-color); padding-bottom: 8px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;">
+                        Saved Planner Prints</h3>
+                    <div id="savedBlueprintSnapshots" class="body-font"
+                        style="display: grid; gap: 16px;"></div>
+                </article>
+            </div>
+
+            <div style="margin-top: 24px; text-align: center;">
+                <button class="dd-btn dd-btn-dark" onclick="logout()"
+                    style="padding: 10px 24px; font-size: 12px;">Logout</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dd-footer">
+        <div class="dd-footer-content">
+            <h3 class="dd-footer-title">It's time to build your dream home.</h3>
+            <p style="margin-bottom: 24px;">Start by sketching your room layouts in our 2D interactive canvas or consult
+                with our experts.</p>
+            <div class="dd-footer-links">
+                <a href="index.html" class="dd-footer-link">Home</a>
+                <a href="process.html" class="dd-footer-link">The Process</a>
+                <a href="work.html" class="dd-footer-link">Our Work</a>
+                <a href="team.html" class="dd-footer-link">Our Team</a>
+                <a href="careers.html" class="dd-footer-link">Careers</a>
+                <a href="contact.html" class="dd-footer-link">Contact</a>
+                <a href="planner.html" class="dd-footer-link">2D Planner</a>
+                <a href="dashboard.html" class="dd-footer-link">Dashboard</a>
+                <a href="login.html" class="dd-footer-link">Login</a>
+            </div>
+        </div>
+        <div class="dd-footer-bottom">
+            <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo" class="dd-footer-logo">
+            <p>&copy; 2026 Best Fit Carpenters. Interior Renovations. All rights reserved.</p>
+            <p style="color: #555;">Design Aligned with ddcarpentry.com</p>
+        </div>
+    </footer>
+
+    <!-- Interactive script log logic -->
+    <script>
+        function isLoggedIn() {
+            return localStorage.getItem('isLoggedIn') === 'true';
+        }
+
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleString();
+        }
+
+        function deleteBlueprintSnapshot(snapshotId) {
+            const snapshots = JSON.parse(localStorage.getItem('savedBlueprintSnapshots') || '[]');
+            const filteredSnapshots = snapshots.filter(snapshot => (snapshot.time || snapshot.id) !== snapshotId);
+            localStorage.setItem('savedBlueprintSnapshots', JSON.stringify(filteredSnapshots));
+            loadInteractions();
+        }
+
+        function loadInteractions() {
+            if (!isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const snapshotContainer = document.getElementById('savedBlueprintSnapshots');
+            if (!snapshotContainer) return;
+
+            const snapshots = JSON.parse(localStorage.getItem('savedBlueprintSnapshots') || '[]');
+            snapshotContainer.innerHTML = snapshots.length
+                ? snapshots.map(snapshot => `
+                    <div style="padding: 14px; border: 1px solid var(--border-color); border-radius: 4px; background: #fff;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+                            <strong>${snapshot.user}</strong>
+                            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                <span style="color: var(--pencil-gray); font-size: 0.85rem;">${formatTime(snapshot.time)}</span>
+                                <button type="button" onclick="deleteBlueprintSnapshot('${snapshot.time || snapshot.id}')"
+                                    style="border: 1px solid var(--accent-gold); background: #ffffff; color: var(--dark-charcoal); padding: 4px 10px; border-radius: 3px; cursor: pointer; font-size: 11px;">Delete</button>
+                            </div>
+                        </div>
+                        <div style="font-size: 12px; color: var(--pencil-gray); margin-bottom: 10px;">
+                            ${snapshot.objectCount} item${snapshot.objectCount === 1 ? '' : 's'} • Room: ${snapshot.room?.width ?? '—'} × ${snapshot.room?.depth ?? '—'}
+                        </div>
+                        <div style="font-size: 12px; color: var(--pencil-gray); margin-bottom: 10px; line-height: 1.5;">
+                            <div>Email: ${snapshot.email || 'Not provided'}</div>
+                            <div>Lighting: ${snapshot.lighting || 'No lighting'}</div>
+                        </div>
+                        <div style="overflow: auto; border: 1px solid var(--border-color); background: #fafafa; padding: 8px;">
+                            ${snapshot.svg}
+                        </div>
+                    </div>`).join('')
+                : '<p style="margin: 0; color: var(--pencil-gray);">No saved planner prints yet.</p>';
+        }
+
+        function logout() {
+            localStorage.setItem('isLoggedIn', 'false');
+            localStorage.setItem('loggedInUser', '');
+            window.location.href = 'login.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!isLoggedIn()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            loadInteractions();
+            const loginLink = document.getElementById('loginLink');
+            if (isLoggedIn()) {
+                if (loginLink) {
+                    loginLink.textContent = 'Logout';
+                    loginLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        logout();
+                    });
+                }
+            }
+            window.addEventListener('storage', loadInteractions);
+        });
+    </script>
+</body>
+
+</html>

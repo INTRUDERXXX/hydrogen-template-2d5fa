@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Best Fit Carpenters</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="ytcodedemo2.0.js" defer></script>
+</head>
+
+<body class="modern-architect-theme">
+    <header class="app-header">
+        <div class="logo-section">
+            <a href="index.html" style="text-decoration:none;">
+                <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo">
+            </a>
+        </div>
+        <nav class="header-nav">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="process.html">The Process</a>
+            <a class="nav-link" href="work.html">Our Work</a>
+            <a class="nav-link" href="team.html">Our Team</a>
+            <a class="nav-link active" href="careers.html">Careers</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="planner.html">2D Planner</a>
+            <a class="nav-link" id="dashboardLink" href="dashboard.html" style="display: none;">Dashboard</a>
+            <a class="nav-link" id="loginLink" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main
+        style="display: flex; justify-content: center; align-items: flex-start; padding: 60px 20px; min-height: 70vh;">
+        <section class="pro-borders"
+            style="max-width: 600px; width: 100%; border-top: 4px solid var(--accent-gold); padding: 40px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div class="dd-section-label">Join the Team</div>
+                <h2 class="dd-section-title" style="font-size: 24px;">Build a Career with Best Fit Carpenters</h2>
+            </div>
+
+            <form class="pro-form" id="careerForm">
+                <div class="form-group">
+                    <label for="appName">Full Name</label>
+                    <input type="text" id="appName" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                    <label for="appRole">Role of Interest</label>
+                    <select id="appRole" required
+                        style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 4px; background: #fafafa; font-family: var(--font-sans); font-size: 13px; color: var(--dark-charcoal);">
+                        <option value="">Select a role...</option>
+                        <option value="Lead Carpenter">Lead Carpenter</option>
+                        <option value="Apprentice Carpenter">Apprentice Carpenter</option>
+                        <option value="Project Manager">Project Manager</option>
+                        <option value="Estimator">Estimator</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="appExp">Years of Experience</label>
+                    <input type="number" id="appExp" required min="0" placeholder="e.g. 5">
+                </div>
+                <button type="submit" class="submit-btn" style="margin-top: 24px;">Submit Application</button>
+                <div id="careerMessage"
+                    style="text-align:center; font-family: var(--font-heading); font-weight: 600; color: #2e7d32; margin-top: 16px; display: none;">
+                    Application Submitted Successfully!</div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="dd-footer">
+        <div class="dd-footer-content">
+            <h3 class="dd-footer-title">Ready to build?</h3>
+            <p style="margin-bottom: 24px;">Start by sketching your room layouts in our 2D interactive canvas or consult
+                our experts.</p>
+            <div class="dd-footer-links">
+                <a href="index.html" class="dd-footer-link">Home</a>
+                <a href="process.html" class="dd-footer-link">The Process</a>
+                <a href="work.html" class="dd-footer-link">Our Work</a>
+                <a href="team.html" class="dd-footer-link">Our Team</a>
+                <a href="careers.html" class="dd-footer-link">Careers</a>
+                <a href="contact.html" class="dd-footer-link">Contact</a>
+                <a href="planner.html" class="dd-footer-link">2D Planner</a>
+                <a href="dashboard.html" class="dd-footer-link">Dashboard</a>
+                <a href="login.html" class="dd-footer-link">Login</a>
+            </div>
+        </div>
+        <div class="dd-footer-bottom">
+            <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo" class="dd-footer-logo">
+            <p>&copy; 2026 Best Fit Carpenters. Interior Renovations. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dashboardLink = document.getElementById('dashboardLink');
+            const loginLink = document.getElementById('loginLink');
+            const dashboardFooterLinks = document.querySelectorAll('a[href="dashboard.html"]');
+            const isAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (dashboardLink) dashboardLink.style.display = isAuthenticated ? 'inline-block' : 'none';
+            if (loginLink) loginLink.style.display = isAuthenticated ? 'none' : 'inline-block';
+            dashboardFooterLinks.forEach((link) => {
+                link.style.display = isAuthenticated ? 'inline-block' : 'none';
+            });
+
+            const form = document.getElementById('careerForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('appName').value;
+                const role = document.getElementById('appRole').value;
+                const exp = document.getElementById('appExp').value;
+
+                const entries = JSON.parse(localStorage.getItem('dashboardInteractions') || '[]');
+                entries.unshift({
+                    user: name,
+                    action: 'Submitted Job Application',
+                    detail: `${role} - ${exp} years exp`,
+                    time: new Date().toISOString()
+                });
+
+                if (entries.length > 50) entries.length = 50;
+                localStorage.setItem('dashboardInteractions', JSON.stringify(entries));
+                window.dispatchEvent(new Event('interactionUpdated'));
+
+                form.reset();
+                const msg = document.getElementById('careerMessage');
+                msg.style.display = 'block';
+                setTimeout(() => msg.style.display = 'none', 4000);
+            });
+        });
+    </script>
+</body>
+
+</html>

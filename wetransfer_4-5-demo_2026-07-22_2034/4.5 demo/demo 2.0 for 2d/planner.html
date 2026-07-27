@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Room Planner | Best Fit Carpenters</title>
+    <link class="styles" rel="stylesheet" href="style.css">
+</head>
+
+<body class="modern-architect-theme">
+
+    <!-- Header Section -->
+    <header class="app-header">
+        <div class="logo-section">
+            <a href="index.html" style="text-decoration:none;">
+                <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo">
+            </a>
+        </div>
+        <nav class="header-nav">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="process.html">The Process</a>
+            <a class="nav-link" href="work.html">Our Work</a>
+            <a class="nav-link" href="team.html">Our Team</a>
+            <a class="nav-link" href="careers.html">Careers</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link active" href="planner.html">2D Planner</a>
+            <a class="nav-link" id="dashboardLink" href="dashboard.html" style="display: none;">Dashboard</a>
+            <a class="nav-link" id="loginLink" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <!-- Workspace Layout -->
+    <div class="workspace-layout">
+
+
+        <!-- 2D Canvas -->
+        <main id="viewer-2d" class="viewer-section pro-borders-right"
+            style="position: relative; flex: 1; min-height: 480px;">
+            <!-- Grid Canvas -->
+            <svg id="blueprint-svg" viewBox="0 0 800 600" style="width: 100%; height: 100%; display: block;">
+                <defs>
+                    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(42, 42, 42, 0.05)" stroke-width="1" />
+                    </pattern>
+                    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#121214" flood-opacity="0.1" />
+                    </filter>
+                </defs>
+
+                <!-- Grid -->
+                <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+
+                <!-- Room boundary -->
+                <rect id="room-boundary" fill="#ffffff" stroke="#2a2a2a" stroke-width="4" />
+
+                <!-- Room boundaries label -->
+                <text id="room-label" class="body-font" x="20" y="30" font-size="12" font-weight="700"
+                    fill="var(--pencil-gray)" style="text-transform: uppercase; letter-spacing: 0.05em;">Room
+                    Workspace</text>
+
+                <!-- Objects Group -->
+                <g id="objects-group"></g>
+            </svg>
+            <div class="watermark body-font">Drag items to design your room layout</div>
+        </main>
+
+        <!-- 3D Canvas -->
+        <main id="viewer-3d" class="viewer-section pro-borders-right"
+            style="position: relative; flex: 1; min-height: 480px; display: none; background: #2A2A2A;">
+            <!-- Three.js will attach here -->
+        </main>
+
+        <!-- Sidebar planner controls -->
+        <aside class="sidebar-planner">
+
+            <div class="sidebar-group" style="padding-bottom: 16px;">
+                <h2 style="text-align: center; margin-bottom: 12px;">Visualizer Mode</h2>
+                <div class="view-tabs"
+                    style="display: flex; justify-content: center; width: 100%; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden;">
+                    <button class="tab-btn active" id="btn-2d" onclick="toggleViewMode('2d')"
+                        style="flex: 1; border: none; margin: 0; padding: 12px 0;">2D PLAN</button>
+                    <button class="tab-btn" id="btn-3d" onclick="toggleViewMode('3d')"
+                        style="flex: 1; border: none; margin: 0; padding: 12px 0; border-left: 1px solid var(--border-color);">3D
+                        VIRTUAL</button>
+                </div>
+            </div>
+
+            <!-- Room Configuration -->
+            <div class="sidebar-group">
+                <h2>1. Configure Room Size</h2>
+                <div class="control-group">
+                    <div class="control-header">
+                        <label>Room Width (cm)</label>
+                        <span id="txt-room-width">600 cm</span>
+                    </div>
+                    <input type="range" id="input-room-width" min="300" max="1000" value="600">
+                </div>
+                <div class="control-group">
+                    <div class="control-header">
+                        <label>Room Length (cm)</label>
+                        <span id="txt-room-depth">450 cm</span>
+                    </div>
+                    <input type="range" id="input-room-depth" min="300" max="800" value="450">
+                </div>
+            </div>
+
+            <!-- Add Objects -->
+            <div class="sidebar-group">
+                <h2>2. Add 2D Objects</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <button class="submit-btn pro-borders" onclick="addObject('table')"
+                        style="margin: 0; padding: 10px 6px;">Add Table</button>
+                    <button class="submit-btn pro-borders" onclick="addObject('chair')"
+                        style="margin: 0; padding: 10px 6px;">Add Chair</button>
+                    <button class="submit-btn pro-borders" onclick="addObject('cabinet')"
+                        style="margin: 0; padding: 10px 6px;">Add Cabinet</button>
+                    <button class="submit-btn pro-borders" onclick="addObject('shelving')"
+                        style="margin: 0; padding: 10px 6px;">Add Shelves</button>
+                    <button class="submit-btn pro-borders" onclick="addObject('tvbox')"
+                        style="margin: 0; padding: 10px 6px;">Add TV Box/Stand</button>
+                </div>
+            </div>
+
+            <!-- Object inspector -->
+            <div id="inspector-group" class="sidebar-group" style="display: none;">
+                <h2>3. Customize Selected Object</h2>
+                <h4 id="inspector-title" class="body-font"
+                    style="font-size: 13px; font-weight: 700; color: var(--dark-charcoal); margin-bottom: 12px; border-bottom: 1.5px solid var(--border-color); padding-bottom: 6px; text-transform: uppercase; letter-spacing: 0.03em;">
+                    Table #1</h4>
+
+                <div class="control-group">
+                    <div class="control-header">
+                        <label>Width (cm)</label>
+                        <span id="txt-item-width">120 cm</span>
+                    </div>
+                    <input type="range" id="input-item-width" min="40" max="250" value="120">
+                </div>
+
+                <div class="control-group">
+                    <div class="control-header">
+                        <label>Length (cm)</label>
+                        <span id="txt-item-depth">80 cm</span>
+                    </div>
+                    <input type="range" id="input-item-depth" min="40" max="200" value="80">
+                </div>
+
+                <div class="control-group">
+                    <div class="control-header">
+                        <label>Rotation (deg)</label>
+                        <span id="txt-item-rotation">0&deg;</span>
+                    </div>
+                    <input type="range" id="input-item-rotation" min="0" max="360" step="45" value="0">
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-top: 16px;">
+                    <button class="submit-btn pro-borders" onclick="rotateCurrent()"
+                        style="margin: 0; flex: 1; padding: 10px; background-color: var(--wood-brown) !important;">Rotate
+                        90&deg;</button>
+                    <button class="submit-btn pro-borders" onclick="deleteCurrent()"
+                        style="margin: 0; flex: 1; padding: 10px; background-color: #d9534f !important; color: white !important;">Delete</button>
+                </div>
+            </div>
+
+            <!-- Inspector Placeholder -->
+            <div id="inspector-placeholder" class="body-font"
+                style="font-size: 13px; color: var(--pencil-gray); text-align: center; border: 1.5px dashed var(--accent-gold); padding: 24px; border-radius: 2px; background: #faf9f6; line-height: 1.6;">
+                Select any object in the blueprint workspace to customize dimensions, rotate its orientation, or drag it
+                to define your layout.
+            </div>
+
+            <!-- Additional Options & Print Section -->
+            <div class="sidebar-group" style="margin-top: 10px;">
+                <h2>4. Additional Options & Print</h2>
+
+                <div class="control-group">
+                    <div class="control-header">
+                        <label>Lighting Setup</label>
+                    </div>
+                    <select id="select-lighting"
+                        onchange="window.currentLighting = this.value; if(typeof render3DScene === 'function') render3DScene();">
+                        <option value="no-lighting">No lighting</option>
+                        <option value="optional-lighting">Optional lighting</option>
+                    </select>
+                </div>
+
+                <div class="control-group"
+                    style="margin-top: 6px; padding-top: 8px; border-top: 1px dashed var(--border-color);">
+                    <div class="control-header">
+                        <label>Save Profile</label>
+                    </div>
+                    <input class="planner-save-input" id="planner-name" type="text" placeholder="Name" style="margin-bottom: 8px;" />
+                    <input class="planner-save-input" id="planner-surname" type="text" placeholder="Surname" style="margin-bottom: 8px;" />
+                    <input class="planner-save-input" id="planner-email" type="email" placeholder="Email address" />
+                    <small id="planner-save-helper" class="body-font" style="display: block; color: var(--pencil-gray); margin-top: 6px; font-weight: bold;">
+                        <strong>Required before saving a planner</strong>
+                    </small>
+                </div>
+
+                <button class="submit-btn pro-borders" onclick="saveBlueprintSnapshot()"
+                    style="width: 100%; border: 1px solid var(--accent-gold); background-color: #2a2a2a; color: white;">
+                    Save Blueprint
+                </button>
+            </div>
+
+        </aside>
+    </div>
+
+    <!-- Script imports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="ytcodedemo2.0.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dashboardLink = document.getElementById('dashboardLink');
+            const loginLink = document.getElementById('loginLink');
+            const dashboardFooterLinks = document.querySelectorAll('a[href="dashboard.html"]');
+            const isAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (dashboardLink) dashboardLink.style.display = isAuthenticated ? 'inline-block' : 'none';
+            if (loginLink) loginLink.style.display = isAuthenticated ? 'none' : 'inline-block';
+            dashboardFooterLinks.forEach((link) => {
+                link.style.display = isAuthenticated ? 'inline-block' : 'none';
+            });
+
+            ['planner-name', 'planner-surname', 'planner-email'].forEach((id) => {
+                const input = document.getElementById(id);
+                if (input) {
+                    input.addEventListener('input', () => {
+                        if (typeof window.updatePlannerSaveHelper === 'function') {
+                            window.updatePlannerSaveHelper();
+                        }
+                    });
+                }
+            });
+
+            if (typeof window.updatePlannerSaveHelper === 'function') {
+                window.updatePlannerSaveHelper();
+            }
+        });
+    </script>
+</body>
+
+</html>

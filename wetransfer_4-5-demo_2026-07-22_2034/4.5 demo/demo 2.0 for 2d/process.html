@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Process | Best Fit Carpenters</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="modern-architect-theme home-page">
+    <header class="app-header">
+        <div class="logo-section">
+            <a href="index.html" style="text-decoration:none;">
+                <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo">
+            </a>
+        </div>
+        <nav class="header-nav">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link active" href="process.html">The Process</a>
+            <a class="nav-link" href="work.html">Our Work</a>
+            <a class="nav-link" href="team.html">Our Team</a>
+            <a class="nav-link" href="careers.html">Careers</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="planner.html">2D Planner</a>
+            <a class="nav-link" id="dashboardLink" href="dashboard.html" style="display: none;">Dashboard</a>
+            <a class="nav-link" id="loginLink" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dd-hero"
+            style="background: linear-gradient(135deg, var(--wood-dark), #1a1a1c); text-align: center; padding: 80px 20px;">
+            <p class="dd-hero-subtitle" style="color: var(--accent-gold);">Design to Build</p>
+            <h1 class="dd-hero-title" style="color: #fff;">Our Process sets us apart &rarr;</h1>
+            <p class="dd-hero-desc" style="color: #ddd; max-width: 600px; margin: 0 auto 20px;">We believe a home should
+                reflect your life and the moments that matter most. Through a thoughtful, collaborative process, we
+                create spaces that feel personal, functional, and timeless.</p>
+        </section>
+
+        <section class="dd-highlights-sec">
+            <div class="dd-section-label">Step-by-Step Excellence</div>
+            <h2 class="dd-section-title">How We Build Together</h2>
+            <div class="dd-hl-grid">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-icon-wrapper"
+                                style="font-size: 28px; font-weight: bold; color: var(--wood-brown);">1</div>
+                            <h3>Initial Consultation</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>We discuss your vision, budget, and goals. We believe communication is the foundation of
+                                a great home build.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-icon-wrapper"
+                                style="font-size: 28px; font-weight: bold; color: var(--wood-brown);">2</div>
+                            <h3>2D Space Planning</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>We use our interactive 2D Planner to draft room layouts and specify custom cabinetry
+                                dimensions to fit your lifestyle.</p>
+                            <a href="planner.html" class="dd-hl-btn">Open Planner</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-icon-wrapper"
+                                style="font-size: 28px; font-weight: bold; color: var(--wood-brown);">3</div>
+                            <h3>Cost &amp; Permitting</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Transparent cost itemization. We handle the paperwork, site surveys, and general
+                                contractor duties.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="flip-card-icon-wrapper"
+                                style="font-size: 28px; font-weight: bold; color: var(--wood-brown);">4</div>
+                            <h3>Construction &amp; Finish</h3>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Our craftsmen get to work framing, building custom cabinets in-shop, and delivering an
+                                impeccable final product.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="dd-footer">
+        <div class="dd-footer-content">
+            <h3 class="dd-footer-title">Ready to start the process?</h3>
+            <p style="margin-bottom: 24px;">Sketch your room layouts in our 2D interactive canvas or consult our
+                experts.</p>
+            <div class="dd-footer-links">
+                <a href="index.html" class="dd-footer-link">Home</a>
+                <a href="process.html" class="dd-footer-link">The Process</a>
+                <a href="work.html" class="dd-footer-link">Our Work</a>
+                <a href="team.html" class="dd-footer-link">Our Team</a>
+                <a href="careers.html" class="dd-footer-link">Careers</a>
+                <a href="contact.html" class="dd-footer-link">Contact</a>
+                <a href="planner.html" class="dd-footer-link">2D Planner</a>
+                <a href="dashboard.html" class="dd-footer-link">Dashboard</a>
+                <a href="login.html" class="dd-footer-link">Login</a>
+            </div>
+        </div>
+        <div class="dd-footer-bottom">
+            <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo" class="dd-footer-logo">
+            <p>&copy; 2026 Best Fit Carpenters. Interior Renovations. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dashboardLink = document.getElementById('dashboardLink');
+            const loginLink = document.getElementById('loginLink');
+            const dashboardFooterLinks = document.querySelectorAll('a[href="dashboard.html"]');
+            const isAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (dashboardLink) dashboardLink.style.display = isAuthenticated ? 'inline-block' : 'none';
+            if (loginLink) loginLink.style.display = isAuthenticated ? 'none' : 'inline-block';
+            dashboardFooterLinks.forEach((link) => {
+                link.style.display = isAuthenticated ? 'inline-block' : 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

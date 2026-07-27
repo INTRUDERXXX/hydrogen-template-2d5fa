@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team | Best Fit Carpenters</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .team-card {
+            background: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 4px solid var(--accent-gold);
+            border-bottom: 1px solid var(--border-color);
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 3px solid var(--sheet-cream);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-name {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            color: var(--dark-charcoal);
+            margin-bottom: 4px;
+        }
+
+        .team-role {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--accent-gold);
+            margin-bottom: 16px;
+        }
+
+        .team-desc {
+            color: var(--pencil-gray);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body class="modern-architect-theme">
+    <header class="app-header">
+        <div class="logo-section">
+            <a href="index.html" style="text-decoration:none;">
+                <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo">
+            </a>
+        </div>
+        <nav class="header-nav">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="process.html">The Process</a>
+            <a class="nav-link" href="work.html">Our Work</a>
+            <a class="nav-link active" href="team.html">Our Team</a>
+            <a class="nav-link" href="careers.html">Careers</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="planner.html">2D Planner</a>
+            <a class="nav-link" id="dashboardLink" href="dashboard.html" style="display: none;">Dashboard</a>
+            <a class="nav-link" id="loginLink" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <main style="padding: 60px 20px; min-height: 70vh;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div class="dd-section-label">Since 1982</div>
+            <h2 class="dd-section-title">The Craftsmen Behind the Build</h2>
+            <p class="body-font" style="max-width: 600px; margin: 0 auto; color: var(--pencil-gray);">
+                Our team blends generations of woodworking expertise with modern design capabilities to deliver
+                uncompromised quality on every project.
+            </p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div
+                    style="width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px; background: #e0dcd5; display:flex; align-items:center; justify-content:center; border: 3px solid var(--sheet-cream); box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <img src="./Screenshot_20230828-162649_Gallery.jpg" style="width: 40px; height: 40px; opacity: 0.4;" alt="Avatar">
+                </div>
+                <h3 class="team-name">Jeffery E.</h3>
+                <div class="team-role">Founder / Master Carpenter</div>
+                <p class="team-desc body-font">With over 40 years of experience, Jeffery instilled the dedication to
+                    craftsmanship that Best Fit Carpenters is known for today.</p>
+            </div>
+
+            <div class="team-card">
+                <div
+                    style="width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px; background: #e0dcd5; display:flex; align-items:center; justify-content:center; border: 3px solid var(--sheet-cream); box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <img src="./Screenshot_20230828-162649_Gallery.jpg" style="width: 40px; height: 40px; opacity: 0.4;" alt="Avatar">
+                </div>
+                <h3 class="team-name">Tyler</h3>
+                <div class="team-role">Site Manager / Estimator</div>
+                <p class="team-desc body-font">Tyler ensures our project sites run smoothly and safely, managing
+                    timelines and handling client estimations.</p>
+            </div>
+
+            <div class="team-card">
+                <div
+                    style="width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px; background: #e0dcd5; display:flex; align-items:center; justify-content:center; border: 3px solid var(--sheet-cream); box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <img src="./Screenshot_20230828-162649_Gallery.jpg" style="width: 40px; height: 40px; opacity: 0.4;" alt="Avatar">
+                </div>
+                <h3 class="team-name">Kate</h3>
+                <div class="team-role">Design &amp; Coordination</div>
+                <p class="team-desc body-font">Kate helps clients navigate the 2D planning phase and guides the finish
+                    selection to match their lifestyle perfectly.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="dd-footer">
+        <div class="dd-footer-content">
+            <h3 class="dd-footer-title">Join our story.</h3>
+            <p style="margin-bottom: 24px;">Start by sketching your room layouts in our 2D interactive canvas or consult
+                our experts.</p>
+            <div class="dd-footer-links">
+                <a href="index.html" class="dd-footer-link">Home</a>
+                <a href="process.html" class="dd-footer-link">The Process</a>
+                <a href="work.html" class="dd-footer-link">Our Work</a>
+                <a href="team.html" class="dd-footer-link">Our Team</a>
+                <a href="careers.html" class="dd-footer-link">Careers</a>
+                <a href="contact.html" class="dd-footer-link">Contact</a>
+                <a href="planner.html" class="dd-footer-link">2D Planner</a>
+                <a href="dashboard.html" class="dd-footer-link">Dashboard</a>
+                <a href="login.html" class="dd-footer-link">Login</a>
+            </div>
+        </div>
+        <div class="dd-footer-bottom">
+            <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo" class="dd-footer-logo">
+            <p>&copy; 2026 Best Fit Carpenters. Interior Renovations. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dashboardLink = document.getElementById('dashboardLink');
+            const loginLink = document.getElementById('loginLink');
+            const dashboardFooterLinks = document.querySelectorAll('a[href="dashboard.html"]');
+            const isAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (dashboardLink) dashboardLink.style.display = isAuthenticated ? 'inline-block' : 'none';
+            if (loginLink) loginLink.style.display = isAuthenticated ? 'none' : 'inline-block';
+            dashboardFooterLinks.forEach((link) => {
+                link.style.display = isAuthenticated ? 'inline-block' : 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="48" viewBox="0 0 240 48">
+  <rect width="240" height="48" rx="4" fill="#7a4727" />
+  <!-- Circular Saw Blade Style Emblem -->
+  <circle cx="28" cy="24" r="16" fill="#d7b78a" />
+  <circle cx="28" cy="24" r="14" fill="#7a4727" />
+  <text x="28" y="29" font-family="'Cabin', 'Outfit', Arial, sans-serif" font-size="14" fill="#ffffff" font-weight="900" text-anchor="middle">D</text>
+  <!-- Text Brand -->
+  <text x="56" y="27" font-family="'Cabin', 'Outfit', Arial, sans-serif" font-size="17" fill="#ffffff" font-weight="700" letter-spacing="0.5">D&amp;D CARPENTRY</text>
+  <text x="56" y="39" font-family="'Cabin', 'Outfit', Arial, sans-serif" font-size="9" fill="#d7b78a" font-weight="600" letter-spacing="1">CUSTOM BUILDERS</text>
+</svg>

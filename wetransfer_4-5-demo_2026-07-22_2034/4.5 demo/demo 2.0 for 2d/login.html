@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Best Fit Carpenters</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="modern-architect-theme home-page">
+    <!-- Header Section -->
+    <header class="app-header">
+        <div class="logo-section">
+            <a href="index.html" style="text-decoration:none;">
+                <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo">
+            </a>
+        </div>
+        <nav class="header-nav">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="process.html">The Process</a>
+            <a class="nav-link" href="work.html">Our Work</a>
+            <a class="nav-link" href="team.html">Our Team</a>
+            <a class="nav-link" href="careers.html">Careers</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="planner.html">2D Planner</a>
+            <a class="nav-link" id="dashboardLink" href="dashboard.html" style="display: none;">Dashboard</a>
+            <a class="nav-link active" id="loginLink" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <!-- Content Area -->
+    <main class="home-hero"
+        style="display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 160px); padding: 40px 20px;">
+        <section class="hero-card pro-borders"
+            style="max-width: 440px; width: 100%; border-top: 4px solid var(--accent-gold); padding: 36px 28px;">
+            <p class="eyebrow">Member Access</p>
+            <h2 class="heading-font" style="margin-bottom: 24px;">Login to Continue</h2>
+
+            <form id="loginForm" class="login-form" onsubmit="handleLogin(); return false;">
+                <div class="control-group">
+                    <label class="body-font" for="username"
+                        style="font-weight: 700; font-size: 11px; text-transform: uppercase;">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username"
+                        style="border-radius: 2px;">
+                </div>
+                <div class="control-group">
+                    <label class="body-font" for="password"
+                        style="font-weight: 700; font-size: 11px; text-transform: uppercase;">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password"
+                        style="border-radius: 2px;">
+                </div>
+                <button class="submit-btn hero-btn pro-borders" type="submit"
+                    style="border-radius: 2px; width: 100%; padding: 12px; margin-top: 10px;">Login</button>
+                <p id="loginMessage" class="body-font"
+                    style="margin-top: 12px; color: #cc3333; font-weight: 600; text-align: center; min-height: 1.25em;">
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dd-footer">
+        <div class="dd-footer-content">
+            <h3 class="dd-footer-title">It's time to build your dream home.</h3>
+            <p style="margin-bottom: 24px;">Start by sketching your room layouts in our 2D interactive canvas or consult
+                with our experts.</p>
+            <div class="dd-footer-links">
+                <a href="index.html" class="dd-footer-link">Home</a>
+                <a href="process.html" class="dd-footer-link">The Process</a>
+                <a href="work.html" class="dd-footer-link">Our Work</a>
+                <a href="team.html" class="dd-footer-link">Our Team</a>
+                <a href="careers.html" class="dd-footer-link">Careers</a>
+                <a href="contact.html" class="dd-footer-link">Contact</a>
+                <a href="planner.html" class="dd-footer-link">2D Planner</a>
+                <a href="dashboard.html" class="dd-footer-link">Dashboard</a>
+                <a href="login.html" class="dd-footer-link">Login</a>
+            </div>
+        </div>
+        <div class="dd-footer-bottom">
+            <img src="./Screenshot_20230828-162649_Gallery.jpg" alt="Best Fit Carpenters Logo" class="dd-footer-logo">
+            <p>&copy; 2026 Best Fit Carpenters. Interior Renovations. All rights reserved.</p>
+            <p style="color: #555;">Design Aligned with ddcarpentry.com</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dashboardLink = document.getElementById('dashboardLink');
+            const loginLink = document.getElementById('loginLink');
+            const dashboardFooterLinks = document.querySelectorAll('a[href="dashboard.html"]');
+            const isAuthenticated = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (dashboardLink) dashboardLink.style.display = isAuthenticated ? 'inline-block' : 'none';
+            if (loginLink) loginLink.style.display = isAuthenticated ? 'none' : 'inline-block';
+            dashboardFooterLinks.forEach((link) => {
+                link.style.display = isAuthenticated ? 'inline-block' : 'none';
+            });
+        });
+
+        function handleLogin() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const message = document.getElementById('loginMessage');
+
+            if (username === 'admin' && password === 'carpenter123') {
+                message.style.color = '#2a2a2a';
+                message.textContent = 'Login successful. Redirecting...';
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('loggedInUser', username);
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 800);
+            } else {
+                message.style.color = '#cc3333';
+                message.textContent = 'Invalid username or password.';
+            }
+        }
+    </script>
+</body>
+
+</html>
